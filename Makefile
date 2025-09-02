@@ -1,13 +1,15 @@
 .PHONY: lint format test help
 
+SOURCE := tests/*.sh
+
 test: ## run all tests
 	tests/testgithub.sh
 
 lint: ## lint scripts
-	shellcheck tests/*.sh
+	shellcheck $(SOURCE)
 
-format: ## format shell scripts
-	shfmt -w tests/*.sh
+format: ## check formatting
+	shfmt -d $(SOURCE)
 
 # https://www.client9.com/self-documenting-makefiles/
 help:
